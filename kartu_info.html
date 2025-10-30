@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kartu Informasi</title>
+  <style>
+ body{background-color: #C5C6C7;}
+        div.card-fakta{
+                width: 550px ;height: 600px;
+                background-color: #D7E5F0;
+                text-align: center;
+                box-shadow: 3px 3px 5px grey;
+                border-radius: 25px;
+                }
+        
+                .btn-next {
+                     margin-top: 10px;
+                     padding: 10px 20px;
+                     border: none;
+                     background-color: #95b8cc;
+                    color: white;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    }
+    .btn-next:hover {
+      background-color: #95b8cc;
+    }
+    
+    
+
+  .fade-out {
+      opacity: 0;
+    }
+        img.quokka{
+            height: 210px ;
+            width: 450 ;
+            border-radius: 30px;
+            box-shadow: 2px 2px 4px black;
+            transition: opacity 0.5s ease;
+        }
+        .image{
+            height:50px ;
+            border-radius: 30px;
+            box-shadow: 2px 2px 4px black;
+            transition: opacity 0.5s ease;
+        }
+h1{font-family: "ab" ;}
+p{font-family: "ab";}
+h2{font-family: "ab";}
+        @font-face {
+                font-family: "ab" ;
+                src: url("BaksoSapi.otf");}
+         
+  </style>
+</head>
+<body>
+  <center>
+  <div class="card-fakta">
+    <img id="factImage" src="quokkaa.jpg" alt="Quokka" class="quokka"/>
+    <div class="content">
+      <h2>Fakta-fakta Menarik Tentang Hewan-Hewan !</h2>
+      <p class="subtitle">Tahukah kamu fakta-fakta unik ini?</p>
+
+      <ul class="facts-list" id="factList">
+        <li>Quokka adalah marsupial yang dijuluki hewan paling bahagia di dunia karena sering terlihat tersenyum.</li>
+        <li>Quokka aktif di malam hari (nokturnal) dan beristirahat di tempat teduh pada siang hari.</li>
+        <li>Quokka dapat bertahan tanpa air selama beberapa hari, dengan mendapatkkan cairan dari makanan yang mereka makan.</li>
+        <li>Nama “Rottnest” sendiri berasal dari bahasa Belanda yang berarti sarang tikus, karena penjelajah awal mengira quokka adalah tikus besar.</li>
+      </ul>
+
+      <button class="btn-next" id="nextFact">🔁 Fakta Selanjutnya</button>
+
+    </div>
+  </div>
+
+  <script>
+    const factData = [
+      {
+        image: "redpanda.jpg",
+        facts: [
+        "Red panda dikenal sebagai maskot resmi peramban web Firefox.",
+        "Red panda memiliki kemampuan memanjat yang luas biasa, bahkan dapat turun dari pohon dengan posisi kepala lebih dulu.",
+        "Saat cuaca dingin, red panda melilitkan ekornya yang tebal dan berbulu lebat ke tubuhnya untuk menjaga kehangatan.",
+        "Warna bulu red panda yang kemerahan membantu mereka berkamuflase dengan lumus dan pepohonan berwarna serupa di hutan.",
+          
+        ]
+      },
+      {
+        image: "Wombat.jpg",
+        facts: [
+        "Wombat tahan terhadap kekeringan, karena tubuhnya efisien dalam menyerap air dari makanan.",
+        "Wombat betina memiliki kantung untuk membawa anaknya, tetapi kantungnya menghadap ke belakang, agar tidak kemasukan tanah saat menggali.",
+        "Kotoran wombat berbentuk kubus, bentuk ini membantu mencegah kotoran berguling sehingga bosa digunakan untuk menandai wilayah.",
+        "Saat dikejar predator, wombat akan menutup pintu liangnya dengan bagian belakang tubuh(pantat)nya seperti perisai.",
+        ]
+      },
+      {
+        image: "cat.jpg",
+        facts: [
+        "Seekor kucing bisa melompat hingga enam kali panjang tubuhnya.",
+        "Kucing termasuk hewan krepuskular, artinya paling aktif pada waktu senja dan fajar.",
+        "Rata-rata kucing tidur 12-16 jam per hari, menjadikannya salah satu hewan yang paling rajin tidur di dunia hewan.",
+        "Kucing tidak terlalu menyukai air karena bulu mereka sulit mengering.",
+        ]
+      },
+    ];
+
+    const factList = document.getElementById("factList");
+    const factImage = document.getElementById("factImage");
+    const nextBtn = document.getElementById("nextFact");
+
+    nextBtn.addEventListener("click", () => {
+      factList.classList.add("fade-out");
+      setTimeout(() => {
+        const randomFact = factData[Math.floor(Math.random() * factData.length)];
+        factImage.style.opacity = 0;
+
+        setTimeout(() => {
+          factImage.src = randomFact.image;
+          factImage.style.opacity = 1;
+        }, 400);
+
+        factList.innerHTML = randomFact.facts.map(f => `<li>${f}</li>`).join("");
+        factList.classList.remove("fade-out");
+      }, 500);
+    });
+  </script>
+</center>
+</body>
+</html>
